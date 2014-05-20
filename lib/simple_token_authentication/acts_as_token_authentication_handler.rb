@@ -75,12 +75,12 @@ module SimpleTokenAuthentication
         "X-#{@@entity.name.singularize.camelize}-Token"
       end
     end
-    
+
     def header_auth_field_name
       if SimpleTokenAuthentication.header_names["#{@@entity.name.singularize.underscore}".to_sym].presence
         SimpleTokenAuthentication.header_names["#{@@entity.name.singularize.underscore}".to_sym][:auth_field]
       else
-        "X-#{@@entity.name.singularize.camelize}-Email"
+        "X-#{@@entity.name.singularize.camelize}-#{SimpleTokenAuthentication.auth_field.to_s.humanize}"
       end
     end
 
