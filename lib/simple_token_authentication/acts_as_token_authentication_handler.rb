@@ -46,7 +46,7 @@ module SimpleTokenAuthentication
       # See https://github.com/ryanb/cancan/blob/1.6.10/lib/cancan/controller_resource.rb#L108-L111
       entity = nil
       if @@entity.respond_to? "find_by"
-        entity = auth_field && @@entity.find_by(SimpleTokenAuthentication.auth_field, auth_field)
+        entity = auth_field && @@entity.find_by("#{SimpleTokenAuthentication.auth_field} = ?", auth_field)
       elsif @@entity.respond_to? "find_by_#{SimpleTokenAuthentication.auth_field.to_s}"
         entity = auth_field && @@entity.send("find_by_#{SimpleTokenAuthentication.auth_field}", auth_field)
       end
